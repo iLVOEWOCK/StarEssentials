@@ -1,0 +1,26 @@
+---
+name: StarEssentials
+main: wockgod\Essentials
+api: 4.0.0
+author: Wockgod
+version: 1.0.0
+
+permissions:
+  starfall.feed:
+    default: op
+    description: "Gives permission to run /feed command."
+  starfall.heal:
+    default: op
+    description: "Gives permission to run /heal command."
+  starfall.fly:
+    default: op
+    description: "Gives permission to run /fly command."
+  starfall.top:
+    default: op
+    description: "Gives permission to run /top command."
+  starfall.spawn:
+    default: true
+    description: "Permission to use /spawn command."
+  starfall.spawn.set:
+    default: op
+    description: "Gives permission to set world spawn using /spawn set."
