@@ -14,3 +14,9 @@ To install StarEssentials, simply download the latest release from the releases 
 
 # Usage
 Once installed, StarEssentials will automatically load when your server starts up. You can use the various commands and features by typing them into the chat
+
+[![](https://poggit.pmmp.io/shield.state/StarEssentials)](https://poggit.pmmp.io/p/StarEssentials)
+<a href="https://poggit.pmmp.io/p/StarEssentials"><img src="https://poggit.pmmp.io/shield.state/StarEssentials"></a>
+
+[![](https://poggit.pmmp.io/shield.api/StarEssentials)](https://poggit.pmmp.io/p/StarEssentials)
+<a href="https://poggit.pmmp.io/p/StarEssentials"><img src="https://poggit.pmmp.io/shield.api/StarEssentials"></a>
