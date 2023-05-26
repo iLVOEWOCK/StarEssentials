@@ -3,7 +3,7 @@ name: StarEssentials
 main: wockgod\Essentials
 api: 4.0.0
 author: Wockgod
-version: 1.0.0
+version: 1.0.2
 
 permissions:
   starfall.feed:
