@@ -6,6 +6,8 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 use pocketmine\Server;
+use pocketmine\world\sound\FizzSound;
+use pocketmine\world\sound\XpCollectSound;
 
 class ExpCommand extends Command
 {
@@ -18,6 +20,7 @@ class ExpCommand extends Command
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
         if (!$sender instanceof Player) {
+            $sender->sendMessage("§r§cThis command must me used in-game.");
             return;
         }
         if (empty($args)) {
@@ -29,6 +32,10 @@ class ExpCommand extends Command
         }
         switch ($args[0]) {
             case 'add':
+                if (!$sender->hasPermission('starfall.xp.add')) {
+                    $sender->sendMessage("§cYou do not have permission to use this command.");
+                    return;
+                }
                 if (count($args) !== 3) {
                     $sender->sendMessage("§cUsage: /xp add <player> <amount>");
                     return;
@@ -46,9 +53,14 @@ class ExpCommand extends Command
                 $currentXp = $player->getXpManager()->getCurrentTotalXp();
                 $player->getXpManager()->addXp($amount);
                 $newXp = $player->getXpManager()->getCurrentTotalXp();
-                $sender->sendMessage("§aAdded $amount XP to " . $player->getName() . ". Their new XP is $newXp.");
+                $sender->getWorld()->addSound($sender->getPosition(), new XpCollectSound());
+                $sender->sendMessage("§aAdded " . number_format($amount) ."XP to " . $player->getName() . ". Their new XP is " . number_format($newXp) . ".");
                 break;
             case 'remove':
+                if (!$sender->hasPermission('starfall.xp.remove')) {
+                    $sender->sendMessage("§cYou do not have permission to use this command.");
+                    return;
+                }
                 if (count($args) !== 3) {
                     $sender->sendMessage("§cUsage: /xp remove <player> <amount>");
                     return;
@@ -70,7 +82,8 @@ class ExpCommand extends Command
                 }
                 $player->getXpManager()->subtractXp($amount);
                 $newXp = $player->getXpManager()->getCurrentTotalXp();
-                $sender->sendMessage("§aRemoved $amount XP from " . $player->getName() . ". Their new XP is $newXp.");
+                $sender->getWorld()->addSound($sender->getPosition(), new FizzSound());
+                $sender->sendMessage("§aRemoved " . number_format($amount) . "XP from " . $player->getName() . ". Their new XP is ". number_format($newXp) . ".");
                 break;
             default:
                 $sender->sendMessage("§cUsage: /xp [add|remove] <player> <amount>");
@@ -93,4 +106,3 @@ class ExpCommand extends Command
         }
     }
 }
-
