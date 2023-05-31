@@ -24,14 +24,8 @@ class Essentials extends PluginBase implements Listener {
         self::$instance = $this;
         $this->saveDefaultConfig();
         $config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-        $this->getServer()->getLogger()->info("§r§l§5Starfall Essentials has been enabled.");
         $this->registerCommands();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-    }
-
-    public function onDisable(): void
-    {
-        $this->getServer()->getLogger()->info("§r§l§5Starfall Essentials has been disabled.");
     }
 
     public function registerCommands() {
